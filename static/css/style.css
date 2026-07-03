@@ -1,0 +1,1101 @@
+/* =====================================================
+   CREDIT CARD APPROVAL SYSTEM
+   style.css (PART 1)
+===================================================== */
+
+/* ================= GOOGLE FONT ================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ================= RESET ================= */
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    background:#f4f8fc;
+    color:#333;
+    overflow-x:hidden;
+
+}
+
+/* ================= LOADER ================= */
+
+#loader{
+
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#0f172a;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+
+}
+
+.loader-content{
+
+    text-align:center;
+    color:white;
+
+}
+
+.loader-circle{
+
+    width:90px;
+    height:90px;
+    border:8px solid rgba(255,255,255,.2);
+    border-top:8px solid #38bdf8;
+    border-radius:50%;
+    margin:auto;
+    animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+    100%{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* ================= PREDICT LOADER ================= */
+
+#predictLoader{
+
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(15,23,42,.85);
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    color:white;
+    z-index:9999;
+
+}
+
+.spinner{
+
+    width:80px;
+    height:80px;
+    border:8px solid rgba(255,255,255,.2);
+    border-top:8px solid #22c55e;
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+
+    background:#1e3a8a;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 8%;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+
+}
+
+.logo{
+
+    font-size:24px;
+    font-weight:700;
+
+}
+
+.logo i{
+
+    color:#facc15;
+    margin-right:8px;
+
+}
+
+nav ul{
+
+    display:flex;
+    list-style:none;
+    gap:30px;
+
+}
+
+nav ul li a{
+
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+    transition:.3s;
+
+}
+
+nav ul li a:hover{
+
+    color:#facc15;
+
+}
+
+/* ================= NOTICE ================= */
+
+.notice{
+
+    background:#fde68a;
+    color:#92400e;
+    padding:12px;
+    font-weight:600;
+
+}
+
+/* ================= HERO ================= */
+
+.hero{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:70px 8%;
+    background:linear-gradient(135deg,#2563eb,#0ea5e9);
+    color:white;
+
+}
+
+.hero-left{
+
+    width:55%;
+
+}
+
+.hero-left h1{
+
+    font-size:42px;
+    margin-bottom:20px;
+
+}
+
+.hero-left p{
+
+    font-size:18px;
+    line-height:1.8;
+
+}
+
+.hero-right{
+
+    width:40%;
+    text-align:center;
+
+}
+
+.hero-icon{
+
+    font-size:180px;
+    color:white;
+    animation:float 3s infinite alternate;
+
+}
+
+@keyframes float{
+
+    from{
+
+        transform:translateY(0);
+
+    }
+
+    to{
+
+        transform:translateY(-20px);
+
+    }
+
+}
+
+/* ================= MAIN ================= */
+
+.main-container{
+
+    width:92%;
+    margin:40px auto;
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:30px;
+
+}
+
+/* ================= LEFT CARD ================= */
+
+.left-card{
+
+    background:white;
+    padding:35px;
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.left-card h2{
+
+    margin-bottom:25px;
+    color:#1e3a8a;
+
+}
+
+/* ================= INPUT ================= */
+
+.input-group{
+
+    margin-bottom:22px;
+
+}
+
+.input-group label{
+
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+
+}
+
+.input-group input,
+.input-group select{
+
+    width:100%;
+    padding:14px;
+    border:1px solid #cbd5e1;
+    border-radius:10px;
+    font-size:15px;
+    transition:.3s;
+
+}
+
+.input-group input:focus,
+.input-group select:focus{
+
+    border-color:#2563eb;
+    outline:none;
+    box-shadow:0 0 8px rgba(37,99,235,.25);
+
+}
+
+.input-group input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+/* ================= BUTTONS ================= */
+
+.button-group{
+
+    display:flex;
+    gap:20px;
+    margin-top:25px;
+
+}
+
+.button-group button{
+
+    flex:1;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+
+}
+
+#predictBtn{
+
+    background:#2563eb;
+    color:white;
+
+}
+
+#predictBtn:hover{
+
+    background:#1d4ed8;
+    transform:translateY(-2px);
+
+}
+
+.reset-btn{
+
+    background:#ef4444;
+    color:white;
+
+}
+
+.reset-btn:hover{
+
+    background:#dc2626;
+    transform:translateY(-2px);
+
+}
+/* =====================================================
+   STYLE.CSS (PART 2)
+===================================================== */
+
+/* ================= RIGHT CARD ================= */
+
+.right-card{
+
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+
+}
+
+.info-card{
+
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+
+}
+
+.info-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.info-card h2{
+
+    color:#2563eb;
+    margin-bottom:15px;
+
+}
+
+.info-card p{
+
+    line-height:1.8;
+
+}
+
+.info-card ul{
+
+    padding-left:20px;
+    line-height:2;
+
+}
+
+/* ================= RESULT PAGE ================= */
+
+.result-container{
+
+    width:92%;
+    margin:40px auto;
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:30px;
+
+}
+
+.result-left{
+
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+
+}
+
+.result-right{
+
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+
+}
+
+/* ================= STATUS CARD ================= */
+
+.status-card{
+
+    background:white;
+    border-radius:18px;
+    padding:35px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.status-icon{
+
+    font-size:70px;
+    margin-bottom:20px;
+
+}
+
+.approved{
+
+    color:#16a34a;
+
+}
+
+.rejected{
+
+    color:#dc2626;
+
+}
+
+.status-card h1{
+
+    margin-bottom:15px;
+
+}
+
+.status-card p{
+
+    font-size:17px;
+    line-height:1.7;
+
+}
+
+/* ================= SUMMARY CARD ================= */
+
+.summary-card{
+
+    background:white;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.summary-card h2{
+
+    margin-bottom:20px;
+    color:#2563eb;
+
+}
+
+/* ================= DETAILS CARD ================= */
+
+.details-card{
+
+    background:white;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.details-card h2{
+
+    color:#2563eb;
+    margin-bottom:20px;
+
+}
+
+.details-card table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+.details-card td{
+
+    padding:14px;
+    border-bottom:1px solid #e2e8f0;
+
+}
+
+.details-card td:first-child{
+
+    font-weight:600;
+    color:#1e3a8a;
+
+}
+
+/* ================= PROGRESS BAR ================= */
+
+.progress{
+
+    width:100%;
+    background:#e2e8f0;
+    border-radius:30px;
+    overflow:hidden;
+    height:28px;
+
+}
+
+.progress-fill{
+
+    height:100%;
+    background:linear-gradient(to right,#22c55e,#16a34a);
+    color:white;
+    text-align:center;
+    line-height:28px;
+    font-weight:bold;
+
+}
+
+/* ================= CHART CARD ================= */
+
+.chart-card{
+
+    background:white;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.chart-card h2{
+
+    text-align:center;
+    color:#2563eb;
+    margin-bottom:20px;
+
+}
+
+.chart-card canvas{
+
+    max-width:100%;
+
+}
+
+/* ================= REASON CARD ================= */
+
+.reason-card{
+
+    background:#fef2f2;
+    border-left:6px solid #ef4444;
+    padding:25px;
+    border-radius:15px;
+
+}
+
+.reason-card h2{
+
+    color:#dc2626;
+    margin-bottom:15px;
+
+}
+
+.reason-card ul{
+
+    padding-left:20px;
+    line-height:2;
+
+}
+
+/* ================= TIPS CARD ================= */
+
+.tips-card{
+
+    background:#ecfeff;
+    border-left:6px solid #06b6d4;
+    padding:25px;
+    border-radius:15px;
+
+}
+
+.tips-card h2{
+
+    color:#0891b2;
+    margin-bottom:15px;
+
+}
+
+.tips-card ul{
+
+    padding-left:20px;
+    line-height:2;
+
+}
+
+/* ================= BUTTON AREA ================= */
+
+.button-area{
+
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+
+}
+
+.home-btn,
+.print-btn{
+
+    flex:1;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    transition:.3s;
+
+}
+
+.home-btn{
+
+    background:#2563eb;
+
+}
+
+.home-btn:hover{
+
+    background:#1d4ed8;
+
+}
+
+.print-btn{
+
+    background:#16a34a;
+
+}
+
+.print-btn:hover{
+
+    background:#15803d;
+
+}
+/* =====================================================
+   STYLE.CSS (PART 3)
+===================================================== */
+
+/* ================= ABOUT SECTION ================= */
+
+.section{
+
+    width:92%;
+    margin:50px auto;
+    background:white;
+    padding:35px;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.section h2{
+
+    color:#2563eb;
+    margin-bottom:20px;
+
+}
+
+.section p{
+
+    line-height:1.9;
+    font-size:16px;
+
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+
+    margin-top:50px;
+    background:#1e3a8a;
+    color:white;
+    text-align:center;
+    padding:25px;
+
+}
+
+footer p{
+
+    margin:8px 0;
+
+}
+
+/* ================= DARK MODE BUTTON ================= */
+
+#themeBtn{
+
+    position:fixed;
+    right:25px;
+    bottom:90px;
+    width:55px;
+    height:55px;
+    border:none;
+    border-radius:50%;
+    background:#111827;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,.3);
+    z-index:999;
+
+}
+
+/* ================= TOP BUTTON ================= */
+
+#topBtn{
+
+    display:none;
+    position:fixed;
+    right:25px;
+    bottom:20px;
+    width:55px;
+    height:55px;
+    border:none;
+    border-radius:50%;
+    background:#2563eb;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,.3);
+    z-index:999;
+
+}
+
+#topBtn:hover{
+
+    background:#1d4ed8;
+
+}
+
+/* ================= HOVER EFFECT ================= */
+
+.left-card,
+.right-card,
+.info-card,
+.chart-card,
+.summary-card,
+.details-card,
+.reason-card,
+.tips-card,
+.status-card{
+
+    transition:.35s;
+
+}
+
+.left-card:hover,
+.info-card:hover,
+.chart-card:hover,
+.summary-card:hover,
+.details-card:hover,
+.reason-card:hover,
+.tips-card:hover,
+.status-card:hover{
+
+    transform:translateY(-6px);
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+
+}
+
+/* ================= RIPPLE ================= */
+
+button{
+
+    position:relative;
+    overflow:hidden;
+
+}
+
+.ripple{
+
+    position:absolute;
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+    background:rgba(255,255,255,.5);
+    animation:ripple .6s linear;
+    pointer-events:none;
+
+}
+
+@keyframes ripple{
+
+    from{
+
+        width:0;
+        height:0;
+        opacity:1;
+
+    }
+
+    to{
+
+        width:300px;
+        height:300px;
+        opacity:0;
+
+    }
+
+}
+
+/* ================= DARK MODE ================= */
+
+body.dark{
+
+    background:#0f172a;
+    color:white;
+
+}
+
+body.dark nav,
+body.dark footer{
+
+    background:#020617;
+
+}
+
+body.dark .left-card,
+body.dark .right-card,
+body.dark .info-card,
+body.dark .summary-card,
+body.dark .details-card,
+body.dark .chart-card,
+body.dark .status-card,
+body.dark .tips-card,
+body.dark .reason-card,
+body.dark .section{
+
+    background:#1e293b;
+    color:white;
+
+}
+
+body.dark input,
+body.dark select{
+
+    background:#334155;
+    color:white;
+    border:1px solid #475569;
+
+}
+
+body.dark table td{
+
+    border-color:#475569;
+
+}
+
+/* ================= SCROLLBAR ================= */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#dbeafe;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#2563eb;
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#1d4ed8;
+
+}
+
+/* ================= FADE ANIMATION ================= */
+
+.main-container,
+.result-container{
+
+    animation:fade .8s ease;
+
+}
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ================= RESPONSIVE TABLET ================= */
+
+@media(max-width:992px){
+
+.hero{
+
+    flex-direction:column;
+    text-align:center;
+
+}
+
+.hero-left,
+.hero-right{
+
+    width:100%;
+
+}
+
+.hero-icon{
+
+    margin-top:30px;
+    font-size:120px;
+
+}
+
+.main-container,
+.result-container{
+
+    grid-template-columns:1fr;
+
+}
+
+.button-group{
+
+    flex-direction:column;
+
+}
+
+.button-area{
+
+    flex-direction:column;
+
+}
+
+}
+
+/* ================= RESPONSIVE MOBILE ================= */
+
+@media(max-width:768px){
+
+nav{
+
+    flex-direction:column;
+    gap:15px;
+
+}
+
+nav ul{
+
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+
+}
+
+.hero{
+
+    padding:40px 20px;
+
+}
+
+.hero-left h1{
+
+    font-size:30px;
+
+}
+
+.hero-left p{
+
+    font-size:16px;
+
+}
+
+.hero-icon{
+
+    font-size:90px;
+
+}
+
+.left-card,
+.right-card,
+.summary-card,
+.details-card,
+.chart-card,
+.status-card,
+.section{
+
+    padding:20px;
+
+}
+
+.button-group button,
+.home-btn,
+.print-btn{
+
+    width:100%;
+
+}
+
+.logo{
+
+    font-size:20px;
+
+}
+
+}
+
+/* ================= PRINT ================= */
+
+@media print{
+
+nav,
+footer,
+#themeBtn,
+#topBtn,
+.button-area{
+
+display:none;
+
+}
+
+body{
+
+background:white;
+
+}
+
+.chart-card,
+.details-card,
+.summary-card,
+.status-card{
+
+box-shadow:none;
+
+}
+
+}
