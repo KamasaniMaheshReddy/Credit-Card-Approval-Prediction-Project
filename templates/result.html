@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction Result</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+    <div class="logo">
+
+        <i class="fa-solid fa-building-columns"></i>
+
+        Credit Approval System
+
+    </div>
+
+</nav>
+
+<!-- ================= RESULT CONTAINER ================= -->
+
+<div class="result-container">
+
+    <!-- LEFT PANEL -->
+
+    <div class="result-left">
+
+        <div class="status-card">
+
+            {% if "APPROVED" in prediction %}
+
+            <div class="approved">
+
+                <i class="fa-solid fa-circle-check status-icon"></i>
+
+                <h1>
+
+                    APPLICATION APPROVED
+
+                </h1>
+
+                <p>
+
+                    Congratulations!
+
+                    Based on the supplied information,
+
+                    the applicant has a high chance of approval.
+
+                </p>
+
+            </div>
+
+            {% else %}
+
+            <div class="rejected">
+
+                <i class="fa-solid fa-circle-xmark status-icon"></i>
+
+                <h1>
+
+                    APPLICATION REJECTED
+
+                </h1>
+
+                <p>
+
+                    The Machine Learning model predicts
+
+                    that the application is likely to be rejected.
+
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+        <!-- Probability -->
+
+        <div class="summary-card">
+
+            <h2>
+
+                Prediction Summary
+
+            </h2>
+
+            <table>
+
+                <tr>
+
+                    <td>Approval Probability</td>
+
+                    <td>{{ approved_prob }}%</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Rejection Probability</td>
+
+                    <td>{{ rejected_prob }}%</td>
+
+                </tr>
+
+            </table>
+
+            <br>
+
+            <div class="progress">
+
+                <div class="progress-fill"
+
+                     style="width:{{ approved_prob }}%;">
+
+                    {{ approved_prob }}%
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Applicant Details -->
+
+        <div class="details-card">
+
+            <h2>
+
+                Applicant Details
+
+            </h2>
+
+            <table>
+
+                <tr>
+
+                    <td>Age</td>
+
+                    <td>{{ age }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Annual Income</td>
+
+                    <td>₹ {{ income }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Credit Score</td>
+
+                    <td>{{ score }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Employment Years</td>
+
+                    <td>{{ emp }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Dependents</td>
+
+                    <td>{{ dependents }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Months at Address</td>
+
+                    <td>{{ months }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Total Credit Lines</td>
+
+                    <td>{{ credit_lines }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Credit Utilization</td>
+
+                    <td>{{ utilization }}%</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Debt-To-Income Ratio</td>
+
+                    <td>{{ dti }}%</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Prior Defaults</td>
+
+                    <td>{{ defaults }}</td>
+
+                </tr>
+
+            </table>
+
+        </div>
+                <!-- ================= CHARTS ================= -->
+
+        <div class="chart-card">
+
+            <h2>
+
+                Approval Analysis
+
+            </h2>
+
+            <canvas id="resultChart"></canvas>
+
+        </div>
+
+        <div class="chart-card">
+
+            <h2>
+
+                Probability Comparison
+
+            </h2>
+
+            <canvas id="barChart"></canvas>
+
+        </div>
+
+    </div>
+
+    <!-- ================= RIGHT PANEL ================= -->
+
+    <div class="result-right">
+
+        {% if reasons %}
+
+        <div class="reason-card">
+
+            <h2>
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+                Reasons for Rejection
+
+            </h2>
+
+            <ul>
+
+                {% for reason in reasons %}
+
+                <li>{{ reason }}</li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+        {% endif %}
+
+        <!-- ================= SUGGESTIONS ================= -->
+
+        <div class="tips-card">
+
+            <h2>
+
+                <i class="fa-solid fa-lightbulb"></i>
+
+                Suggestions to Improve Approval
+
+            </h2>
+
+            <ul>
+
+                <li>Maintain a Credit Score above 700.</li>
+
+                <li>Reduce Debt-To-Income Ratio below 35%.</li>
+
+                <li>Keep Credit Utilization below 30%.</li>
+
+                <li>Avoid Loan or Credit Defaults.</li>
+
+                <li>Increase Employment Stability.</li>
+
+                <li>Maintain a Stable Residential Address.</li>
+
+                <li>Increase Annual Income whenever possible.</li>
+
+                <li>Pay Credit Card Bills on Time.</li>
+
+            </ul>
+
+        </div>
+
+        <!-- ================= STATUS GUIDE ================= -->
+
+        <div class="info-card">
+
+            <h2>
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                Application Status Guide
+
+            </h2>
+
+            <table>
+
+                <tr>
+
+                    <td>80% - 100%</td>
+
+                    <td>Excellent Approval Chance</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>60% - 79%</td>
+
+                    <td>Good Approval Chance</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>40% - 59%</td>
+
+                    <td>Moderate Approval Chance</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>0% - 39%</td>
+
+                    <td>Low Approval Chance</td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <!-- ================= BUTTONS ================= -->
+
+        <div class="button-area">
+
+            <a href="/">
+
+                <button class="home-btn">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    Back To Home
+
+                </button>
+
+            </a>
+
+            <button onclick="window.print()"
+                    class="print-btn">
+
+                <i class="fa-solid fa-print"></i>
+
+                Print Report
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+
+        © 2026 Credit Card Approval Prediction System
+
+    </p>
+
+    <p>
+
+        Developed using Flask | Python | Machine Learning
+
+    </p>
+
+</footer>
+
+<!-- ================= DARK MODE ================= -->
+
+<button id="themeBtn">
+
+    <i class="fa-solid fa-moon"></i>
+
+</button>
+
+<!-- ================= BACK TO TOP ================= -->
+
+<button id="topBtn">
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+<!-- ================= HIDDEN VALUES ================= -->
+
+<input
+type="hidden"
+id="approvedValue"
+value="{{ approved_prob }}">
+
+<input
+type="hidden"
+id="rejectedValue"
+value="{{ rejected_prob }}">
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>
